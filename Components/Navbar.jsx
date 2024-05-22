@@ -24,8 +24,10 @@ const Navbar = () => {
                 }}
             >
                 <View style={styles.modalBackground}>
-                    <View style={styles.modalContent}>
-                        <Text style={styles.modalText}>Login Modal</Text>
+                    <View >
+                        <View style={styles.modalContent}>
+                        <Text style={styles.modalText}> This page is under contruction</Text>
+                        </View>
                         <Pressable  onPress={() => setVisible(false)} style={styles.closeModal}>
                             <Text style={styles.closeModalText}>Close</Text>
                         </Pressable>
@@ -56,24 +58,28 @@ const styles = StyleSheet.create({
     },
     modalBackground: {
         flex: 1,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    },
-    modalContent: {
-        padding: 20,
-        borderRadius: 10,
-        backgroundColor: 'rgba(100, 100, 100, 0.2)',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
     },
     modalText: {
         marginBottom: 15,
         fontSize: 18,
-        color: '#000',
+        textAlign: 'center',
+        paddingTop: 300,
+        color: 'rgba(194, 188, 188, 0.99)',
     },
     closeModal:{
-        backgroundColor:'white',
-        borderR
-        
+        position: 'absolute',
+        bottom: -350,
+        left:140,
+        backgroundColor: 'rgba(155, 4, 4, 0.99)',
+        padding: 20,
+        borderRadius: 100,
+       
     },
     closeModalText:{
-        textAlign:'center'
+        textAlign:'center',
+        color:'white',
+        fontWeight:'bold'
+       
     }
 })
