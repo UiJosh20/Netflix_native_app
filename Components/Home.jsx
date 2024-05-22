@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, FlatList, Image, RefreshControl, RefreshControlComponent, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, Button, FlatList, Image, Platform, RefreshControl, RefreshControlComponent, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -121,6 +121,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+    paddingTop: Platform.OS==='android'? StatusBar.currentHeight: 0,
+
 
   },
   text: {
