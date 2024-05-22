@@ -2,13 +2,13 @@ import { ActivityIndicator, Button, FlatList, Image, Platform, RefreshControl, R
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
+import {API_KEY} from '@env'
 
 const Home = () => {
   const [isLoading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const [refreshing, setRefreshing] = useState(false)
-  const apiKey = '86ea365e1002d9d79178416518dded40'
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
+  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
 
 
 
@@ -20,7 +20,6 @@ const Home = () => {
     setLoading(true)
     axios.get(url)
       .then((res) => {
-        console.log(res.data)
         setLoading(false)
         setData(res.data.results)
       })
