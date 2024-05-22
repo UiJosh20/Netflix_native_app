@@ -10,7 +10,7 @@ const Home = () => {
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
 
 
-  
+
   useEffect(() => {
     fetchData()
   }, [])
@@ -79,35 +79,35 @@ const Home = () => {
 
           <Text style={styles.headertext}>Top Rated Movies</Text>
           <FlatList
-      data={data}
-      horizontal={shuffleArray(true)}
-      renderItem={({ item }) => (
-        <View style={styles.listGrid}>
-          <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} style={styles.image} />
-          <Text style={styles.text}>{item.title}</Text>
-        </View>
-      )}
-      keyExtractor={(item) => item.id.toString()}
-      showsVerticalScrollIndicator={false}
+            data={shuffleArray(data)}
+            horizontal={true}
+            renderItem={({ item }) => (
+              <View style={styles.listGrid}>
+                <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} style={styles.image} />
+                <Text style={styles.text}>{item.title}</Text>
+              </View>
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            showsVerticalScrollIndicator={false}
 
 
-    />
+          />
 
           <Text style={styles.headertext}>Upcoming Movies</Text>
           <FlatList
-      data={shuffleArray(data)}
-      horizontal={true}
-      renderItem={({ item }) => (
-        <View style={styles.listGrid}>
-          <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} style={styles.image} />
-          <Text style={styles.text}>{item.title}</Text>
-        </View>
-      )}
-      keyExtractor={(item) => item.id.toString()}
-      showsVerticalScrollIndicator={false}
+            data={shuffleArray(data)}
+            horizontal={true}
+            renderItem={({ item }) => (
+              <View style={styles.listGrid}>
+                <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} style={styles.image} />
+                <Text style={styles.text}>{item.title}</Text>
+              </View>
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            showsVerticalScrollIndicator={false}
 
 
-    />
+          />
         </ScrollView>
       )}
     </View>
