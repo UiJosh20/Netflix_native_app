@@ -1,8 +1,23 @@
-import { Button, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
 const Navbar = () => {
     const [isVisible, setVisible] = useState(false)
+    const [changeThemeIcon, setChangeThemeIcon] = useState(require('../assets/lightSunny.png'))
+
+    const lightIcon = require('../assets/lightSunny.png')
+    const darkIcon = require('../assets/sunny.png')
+
+    const theme =()=>{
+        if(changeThemeIcon === lightIcon){
+            setChangeThemeIcon(darkIcon)
+        }
+        else{
+            setChangeThemeIcon(lightIcon)
+        }
+
+    }
+
     return (
         <View style={styles.disp}>
             <Pressable style={styles.button}>
@@ -13,6 +28,9 @@ const Navbar = () => {
             </Pressable>
             <Pressable style={styles.button} onPress={() => setVisible(true)}>
                 <Text style={styles.text}>login</Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={theme}>
+            <Image source={changeThemeIcon} style={styles.icon} />
             </Pressable>
 
             <Modal
