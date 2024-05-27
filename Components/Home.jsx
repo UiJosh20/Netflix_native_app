@@ -1,7 +1,7 @@
 import { ActivityIndicator, Button, FlatList, Image, Platform, RefreshControl, RefreshControlComponent, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Navbar from './Navbar'
+
 
 const Home = () => {
   const [isLoading, setLoading] = useState(false)

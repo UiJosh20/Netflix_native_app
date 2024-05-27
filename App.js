@@ -1,15 +1,16 @@
 
 import { Platform, SafeAreaView, StyleSheet, StatusBar, Text, View } from 'react-native';
-import Home from './Components/Home';
+
 
 import { useEffect, useState } from 'react';
+import Page from './app/(tabs)';
 
 export default function App() {
 
   return (
     <View style={style.container}>
-    <StatusBar backgroundColor='#000' barStyle='light-content' />
-   <Home/>
+      <StatusBar backgroundColor='black' barStyle='light-content' />
+   <Page/>
   </View>
   );
 }
