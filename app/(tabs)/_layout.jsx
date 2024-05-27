@@ -34,6 +34,11 @@ const Tablayout = () => {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
+          headerRight: () => (
+           <View style={{ flexDirection: 'row', marginRight: 10 }}>
+            <Ionicons name="search" size={25} color="white" style={{ marginRight: 10 }} />
+          </View>
+        ),
       })}
     >
       <Tabs.Screen

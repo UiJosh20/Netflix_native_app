@@ -63,6 +63,10 @@ const Home = () => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
+          <Image 
+              source={{ uri: `https://image.tmdb.org/t/p/w500${data[10]?.poster_path}` }} 
+              style={styles.singlePhoto} 
+            />
           <Text style={styles.headertext}>Popular Movies</Text>
           <FlatList
             data={shuffleArray(data)}
@@ -155,4 +159,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
   },
+  singlePhoto:{
+    height:400,
+}
 })

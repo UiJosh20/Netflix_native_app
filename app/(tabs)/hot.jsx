@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Trending from '../../Components/Trending'
 
 const hot = () => {
   return (
-    <View>
-      <Text>Hot</Text>
+    <View style={{flex: 1,}}>
+      <Trending/>
     </View>
   )
 }
