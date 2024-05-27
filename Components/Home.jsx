@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     color: 'goldenrod',
     fontWeight: 'bold',
     fontSize: 20,
-    marginVertical: 10,
+    marginVertical: 20,
 
 
   },
@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
   listGrid: {
     alignItems: 'center',
     margin: 10,
+    marginVertical:20,
   },
   singlePhoto:{
     height:400,

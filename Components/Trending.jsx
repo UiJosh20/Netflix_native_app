@@ -84,8 +84,7 @@ const Trending = () => {
   
   
             />
-  
-            <Text style={styles.headertext}>Upcoming Movies</Text>
+
             <FlatList
               data={shuffleArray(data)}
               horizontal={true}
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
   
     listGrid: {
       alignItems: 'center',
-      margin: 10,
+      margin: 6,
     },
     singlePhoto:{
         height:400,
