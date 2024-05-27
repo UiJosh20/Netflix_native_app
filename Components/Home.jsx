@@ -54,7 +54,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Navbar />
+      
       {isLoading ? (
         <ActivityIndicator size='large' color='#fff' style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }} />
       ) : (
