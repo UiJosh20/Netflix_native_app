@@ -8,7 +8,8 @@ const Setting = () => {
   const [isLoading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const [refreshing, setRefreshing] = useState(false)
-  const apiKey = '86ea365e1002d9d79178416518dded40'
+  const apiKey = process.env.TMDB_API_KEY
+
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
 
   const toggleSection = (section) => {
