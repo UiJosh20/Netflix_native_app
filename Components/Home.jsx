@@ -20,7 +20,9 @@ const Home = () => {
     setLoading(true)
     axios.get(url)
       .then((res) => {
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000);
         setData(res.data.results)
       })
       .catch((error) => {
@@ -56,7 +58,10 @@ const Home = () => {
     <View style={styles.container}>
       
       {isLoading ? (
-        <ActivityIndicator size='large' color='#fff' style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }} />
+        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+          <Image source={require('../assets/anim.gif')}  />
+        </View>
+        // <ActivityIndicator size='large' color='#fff'  />
       ) : (
         <ScrollView
           refreshControl={

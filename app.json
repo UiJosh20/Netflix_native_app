@@ -8,7 +8,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/netflix.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "black"
     },
