@@ -7,13 +7,38 @@ import {
   SafeAreaView,
   TextInput,
   Image,
-  Button,
   TouchableOpacity,
+  Alert,
 } from "react-native";
-import React from "react";
-import { router } from "expo-router";
+import React, { useState } from "react";
+import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const index = () => {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+ const handleLogin = () => {
+    AsyncStorage.getItem("user")
+      .then((userDataString) => {
+        if (userDataString) {
+          const userData = JSON.parse(userDataString);
+          if (userData.email === email && userData.password === password) {
+            Alert.alert("Success", "Login successful");
+            router.push('/home');
+          } else {
+            Alert.alert("Error", "Invalid email or password");
+          }
+        } else {
+          Alert.alert("Error", "No user found, please sign up");
+        }
+      })
+      .catch((e) => {
+        Alert.alert("Error", "No internet connection");
+      });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -32,28 +57,31 @@ const index = () => {
         <TextInput
           style={styles.input}
           placeholder="Email Address"
-          keyboardAppearance="default"
+          value={email}
+          onChangeText={setEmail}
           keyboardType="email-address"
-        ></TextInput>
+        />
         <TextInput
-          style={styles.inputpassword}
+          style={styles.input}
           placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
           secureTextEntry
-        ></TextInput>
-        <TouchableOpacity style={styles.loginbtn} >
+        />
+        <TouchableOpacity style={styles.loginbtn} onPress={handleLogin}>
           <Text style={styles.loginbtntext}>Login</Text>
         </TouchableOpacity>
-        
       </View>
-
-      <TouchableOpacity onPress={()=>router.push("signup")}>
-        <Text style={styles.loginbtntext2}>Don't have an account? tap here to signin</Text>
+      <TouchableOpacity onPress={() => router.push("signup")}>
+        <Text style={styles.loginbtntext2}>
+          Don't have an account? Tap here to sign up
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-export default index;
+export default Login;
 
 const styles = StyleSheet.create({
   container: {
@@ -63,17 +91,11 @@ const styles = StyleSheet.create({
   },
   input: {
     borderColor: "white",
-    marginTop: 100,
+    marginTop: 30,
     backgroundColor: "#f1f1f1",
     borderRadius: 10,
-    padding: 5,
-  },
-  inputpassword: {
-    borderColor: "white",
-    marginVertical: 20,
-    backgroundColor: "#f1f1f1",
-    borderRadius: 10,
-    padding: 5,
+    padding: 10,
+    color: "#000",
   },
   form: {
     paddingHorizontal: 20,
@@ -83,21 +105,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#B20710",
-    padding: 7,
+    padding: 15,
     borderRadius: 12,
+    marginVertical:20
   },
-
   loginbtntext: {
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
-  }
-,
-   loginbtntext2: {
+  },
+  loginbtntext2: {
     color: "white",
     fontSize: 12,
     fontWeight: "bold",
-    textAlign:'center',
+    textAlign: "center",
     marginVertical: 30,
-  }
+  },
 });
