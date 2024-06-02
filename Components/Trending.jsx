@@ -6,7 +6,7 @@ const Trending = () => {
     const [isLoading, setLoading] = useState(false)
     const [data, setData] = useState([])
     const [refreshing, setRefreshing] = useState(false)
-    const apiKey = process.env.TMDB_API_KEY
+    const apiKey = process.env.API_KEY
 
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
 

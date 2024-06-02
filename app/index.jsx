@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
@@ -40,44 +41,46 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 200,
-        }}
-      >
-        <Image
-          source={require("../assets/icon.png")}
-          style={{ width: 70, height: 70, justifyContent: "center" }}
-        />
-      </View>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="Email Address"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        <TouchableOpacity style={styles.loginbtn} onPress={handleLogin}>
-          <Text style={styles.loginbtntext}>Login</Text>
+    <ScrollView style={styles.container}>
+     
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 200,
+          }}
+        >
+          <Image
+            source={require("../assets/icon.png")}
+            style={{ width: 70, height: 70, justifyContent: "center" }}
+          />
+        </View>
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            placeholder="Email Address"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <TouchableOpacity style={styles.loginbtn} onPress={handleLogin}>
+            <Text style={styles.loginbtntext}>Login</Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity onPress={() => router.push("signup")}>
+          <Text style={styles.loginbtntext2}>
+            Don't have an account? Tap here to sign up
+          </Text>
         </TouchableOpacity>
-      </View>
-      <TouchableOpacity onPress={() => router.push("signup")}>
-        <Text style={styles.loginbtntext2}>
-          Don't have an account? Tap here to sign up
-        </Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    
+    </ScrollView>
   );
 };
 
