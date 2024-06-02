@@ -72,6 +72,17 @@ useFonts
     return shuffledArray;
   };
 
+
+  const MovieCard = ({ item }) => (
+    <View style={styles.card}>
+      <Image
+        source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
+        style={styles.image}
+      />
+      <Text style={styles.text}>{item.title}</Text>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -144,6 +155,8 @@ useFonts
           <FlatList
             data={shuffleArray(data)}
             horizontal={true}
+            snapToInterval={100}
+            
             renderItem={({ item }) => (
               <View style={styles.list}>
                 <Image

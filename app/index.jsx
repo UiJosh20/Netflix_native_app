@@ -11,7 +11,7 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -20,14 +20,28 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
- const handleLogin = () => {
+
+  useEffect(() => {
+     AsyncStorage.getItem("user")
+       .then((userData) => {
+         if (userData) {
+           router.replace("/home");
+         }
+       })
+       .catch((error) => {
+         console.error("Error accessing local storage", error);
+       });
+  }, [])
+  
+
+  const handleLogin = () => {
     AsyncStorage.getItem("user")
-      .then((userDataString) => {
-        if (userDataString) {
-          const userData = JSON.parse(userDataString);
+      .then((userData) => {
+        if (userData) {
+          const userData = JSON.parse(userData);
           if (userData.email === email && userData.password === password) {
             Alert.alert("Success", "Login successful");
-            router.push('/home');
+            router.push("/home");
           } else {
             Alert.alert("Error", "Invalid email or password");
           }
@@ -35,51 +49,49 @@ const Login = () => {
           Alert.alert("Error", "No user found, please sign up");
         }
       })
-      .catch((e) => {
+      .catch((error) => {
         Alert.alert("Error", "No internet connection");
       });
   };
 
   return (
     <ScrollView style={styles.container}>
-     
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 200,
-          }}
-        >
-          <Image
-            source={require("../assets/icon.png")}
-            style={{ width: 70, height: 70, justifyContent: "center" }}
-          />
-        </View>
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder="Email Address"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
-          <TouchableOpacity style={styles.loginbtn} onPress={handleLogin}>
-            <Text style={styles.loginbtntext}>Login</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity onPress={() => router.push("signup")}>
-          <Text style={styles.loginbtntext2}>
-            Don't have an account? Tap here to sign up
-          </Text>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 200,
+        }}
+      >
+        <Image
+          source={require("../assets/icon.png")}
+          style={{ width: 70, height: 70, justifyContent: "center" }}
+        />
+      </View>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email Address"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        <TouchableOpacity style={styles.loginbtn} onPress={handleLogin}>
+          <Text style={styles.loginbtntext}>Login</Text>
         </TouchableOpacity>
-    
+      </View>
+      <TouchableOpacity onPress={() => router.push("signup")}>
+        <Text style={styles.loginbtntext2}>
+          Don't have an account? Tap here to sign up
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -110,7 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#B20710",
     padding: 15,
     borderRadius: 12,
-    marginVertical:20
+    marginVertical: 20,
   },
   loginbtntext: {
     color: "white",
