@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList } from '
 import React, { useState } from 'react';
 import Collapsible from 'react-native-collapsible';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 const Setting = () => {
   const [activeSection, setActiveSection] = useState(null);
@@ -34,7 +35,9 @@ const Setting = () => {
       </TouchableOpacity>
       <Collapsible collapsed={activeSection !== 'account'}>
         <View style={styles.content}>
-          <Text style={styles.text}>Account setting</Text>
+          <TouchableOpacity>
+          <Text style={styles.text}>Log out</Text>
+          </TouchableOpacity>
         </View>
       </Collapsible>
 

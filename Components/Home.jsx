@@ -15,6 +15,8 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {useFonts} from "expo-font";
+
 
 const Home = () => {
   const [isLoading, setLoading] = useState(false);
@@ -23,6 +25,7 @@ const Home = () => {
   const apiKey = process.env.API_KEY;
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
+useFonts
   useEffect(() => {
     fetchData();
   }, []);
@@ -104,7 +107,7 @@ const Home = () => {
             >
               <TouchableOpacity
                 style={{
-                  backgroundColor: "#E50914",
+                  backgroundColor: "#B20710",
                   width: 100,
                   justifyContent: "center",
                   alignItems: "center",
