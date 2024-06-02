@@ -13,14 +13,14 @@ import {
 import React from "react";
 import { router } from "expo-router";
 
-const index = () => {
+const signup = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 200,
+          marginTop: 100,
         }}
       >
         <Image
@@ -31,6 +31,17 @@ const index = () => {
       <View style={styles.form}>
         <TextInput
           style={styles.input}
+          placeholder="First Name"
+          keyboardAppearance="default"
+        ></TextInput>
+        <TextInput
+          style={styles.inputpassword}
+          placeholder="Last Name"
+          keyboardAppearance="default"
+        ></TextInput>
+
+        <TextInput
+          style={styles.inputpassword}
           placeholder="Email Address"
           keyboardAppearance="default"
           keyboardType="email-address"
@@ -40,20 +51,17 @@ const index = () => {
           placeholder="Password"
           secureTextEntry
         ></TextInput>
-        <TouchableOpacity style={styles.loginbtn} >
-          <Text style={styles.loginbtntext}>Login</Text>
+        <TouchableOpacity style={styles.loginbtn}>
+          <Text style={styles.loginbtntext}>Signup</Text>
         </TouchableOpacity>
-        
       </View>
 
-      <TouchableOpacity onPress={()=>router.push("signup")}>
-        <Text style={styles.loginbtntext2}>Don't have an account? tap here to signin</Text>
-      </TouchableOpacity>
+    
     </SafeAreaView>
   );
 };
 
-export default index;
+export default signup;
 
 const styles = StyleSheet.create({
   container: {
@@ -63,14 +71,15 @@ const styles = StyleSheet.create({
   },
   input: {
     borderColor: "white",
-    marginTop: 100,
+    marginTop: 50,
+    marginBottom: 10,
     backgroundColor: "#f1f1f1",
     borderRadius: 10,
     padding: 5,
   },
   inputpassword: {
     borderColor: "white",
-    marginVertical: 20,
+    marginVertical: 10,
     backgroundColor: "#f1f1f1",
     borderRadius: 10,
     padding: 5,
@@ -84,6 +93,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#B20710",
     padding: 7,
+    marginVertical: 20,
     borderRadius: 12,
   },
 
@@ -91,13 +101,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
-  }
-,
-   loginbtntext2: {
+  },
+  loginbtntext2: {
     color: "white",
     fontSize: 12,
     fontWeight: "bold",
-    textAlign:'center',
+    textAlign: "center",
     marginVertical: 30,
-  }
+  },
 });
