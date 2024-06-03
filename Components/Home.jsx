@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Animated,
   Button,
   FlatList,
   Image,
@@ -13,7 +14,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import {useFonts} from "expo-font";
 
@@ -24,6 +25,7 @@ const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
   const apiKey = process.env.API_KEY;
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+  const scrollX = useRef(new Animated.Value(0)).current;
 
 useFonts
   useEffect(() => {
@@ -155,8 +157,14 @@ useFonts
           <FlatList
             data={shuffleArray(data)}
             horizontal={true}
-            snapToInterval={100}
-            
+            snapToInterval={150 * 2}
+            decelerationRate={0}
+            snapToAlignment="center"
+            bounces={false}
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+              { useNativeDriver: false }
+            )}
             renderItem={({ item }) => (
               <View style={styles.list}>
                 <Image
@@ -176,6 +184,10 @@ useFonts
           <FlatList
             data={shuffleArray(data)}
             horizontal={true}
+            snapToInterval={150 * 2}
+            decelerationRate={0}
+            snapToAlignment="center"
+            bounces={false}
             renderItem={({ item }) => (
               <View style={styles.listGrid}>
                 <Image
@@ -195,6 +207,10 @@ useFonts
           <FlatList
             data={shuffleArray(data)}
             horizontal={true}
+            snapToInterval={150 * 2}
+            decelerationRate={0}
+            snapToAlignment="center"
+            bounces={false}
             renderItem={({ item }) => (
               <View style={styles.listGrid}>
                 <Image

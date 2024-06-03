@@ -53,99 +53,159 @@ const Trending = () => {
 
 
     return (
-        <View style={styles.container}>
-      
+      <View style={styles.container}>
         {isLoading ? (
-          <ActivityIndicator size='large' color='#fff' style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }} />
+          <ActivityIndicator
+            size="large"
+            color="#fff"
+            style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
+          />
         ) : (
           <ScrollView
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
           >
-            
-            <Image 
-              source={{ uri: `https://image.tmdb.org/t/p/w500${data[4]?.poster_path}` }} 
-              style={styles.singlePhoto} 
-            />
-         
-           
+            <View>
+              <Image
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w500${data[4]?.poster_path}`,
+                }}
+                style={styles.singlePhoto}
+              />
+              <Text style={styles.textposition}>{data[10]?.title}</Text>
+              <View
+                style={{
+                  flexDirection: "row-reverse",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  paddingHorizontal: 30,
+                  position: "absolute",
+                  top: 250,
+                  width: "100%",
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#B20710",
+                    width: 100,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: 10,
+                    borderRadius: 10,
+                  }}
+                >
+                  <Text
+                    style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+                  >
+                    Play
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "grey",
+                    width: 120,
+                    alignItems: "center",
+                    padding: 10,
+                    borderRadius: 10,
+                  }}
+                >
+                  <Text
+                    style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+                  >
+                    Watch later
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
             <Text style={styles.headertext}>Top Rated Movies</Text>
             <FlatList
               data={shuffleArray(data)}
               horizontal={true}
+              snapToInterval={150 * 2}
+              decelerationRate={0}
+              snapToAlignment="center"
+              bounces={false}
               renderItem={({ item }) => (
                 <View style={styles.listGrid}>
-                  <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} style={styles.image} />
+                  <Image
+                    source={{
+                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                    }}
+                    style={styles.image}
+                  />
                   <Text style={styles.text}>{item.title}</Text>
                 </View>
               )}
               keyExtractor={(item) => item.id.toString()}
               showsVerticalScrollIndicator={false}
-  
-  
             />
 
             <FlatList
               data={shuffleArray(data)}
               horizontal={true}
+              snapToInterval={150 * 2}
+              decelerationRate={0}
+              snapToAlignment="center"
+              bounces={false}
               renderItem={({ item }) => (
                 <View style={styles.listGrid}>
-                  <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} style={styles.image} />
+                  <Image
+                    source={{
+                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                    }}
+                    style={styles.image}
+                  />
                   <Text style={styles.text}>{item.title}</Text>
                 </View>
               )}
               keyExtractor={(item) => item.id.toString()}
               showsVerticalScrollIndicator={false}
-  
-  
             />
           </ScrollView>
         )}
       </View>
-    )
+    );
 }
 
 export default Trending
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#000',
-      paddingTop: Platform.OS==='android'? StatusBar.currentHeight: 0,
-  
-  
-    },
-   
-    text: {
-      color: '#fff',
-      width: 120,
-      fontFamily: 'sans-serif',
-    },
-  
-    headertext: {
-      color: 'goldenrod',
-      fontWeight: 'bold',
-      fontSize: 20,
-      marginVertical: 10,
-  
-  
-    },
-    list: {
-      alignItems: 'center',
-      marginRight: 10,
-    },
-    image: {
-      width: 110,
-      height: 200,
-      borderRadius: 10,
-    },
-  
-    listGrid: {
-      alignItems: 'center',
-      margin: 6,
-    },
-    singlePhoto:{
-        height:400,
-    }
-  })
+  container: {
+    flex: 1,
+    backgroundColor: "#000",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+
+  text: {
+    color: "#fff",
+    width: 120,
+    fontFamily: "sans-serif",
+  },
+
+  headertext: {
+    color: "goldenrod",
+    fontWeight: "bold",
+    fontSize: 20,
+    marginVertical: 10,
+  },
+  list: {
+    alignItems: "center",
+    marginRight: 10,
+  },
+  image: {
+    width: 110,
+    height: 200,
+    borderRadius: 10,
+  },
+
+  listGrid: {
+    alignItems: "center",
+    margin: 6,
+  },
+  singlePhoto: {
+    height: 500,
+    opacity: 0.4,
+  },
+});
